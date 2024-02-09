@@ -17,10 +17,26 @@ const typeDefs = `#graphql
     image_title: String!
     image: String!
  }
+ type Albums{
+  userId:Int!
+  id:Int!
+  title:String!
+ }
+
+ type Comment {
+  id: Int!
+  body: String!
+  postId: Int!
+  email: String!
+  name:String!
+}
+
 
  type Query{
     products: [Product]
     todos: [Todo]
+    albums:[Albums]
+    comments:[Comment]
  }
 
  type Mutation{
@@ -35,6 +51,10 @@ const resolvers = {
       (await axios.get("https://hplussport.com/api/products/order/price")).data,
     todos: async () =>
       (await axios.get("https://jsonplaceholder.typicode.com/todos")).data,
+    albums: async () =>
+      (await axios.get("https://jsonplaceholder.typicode.com/albums")).data,
+    comments: async () =>
+      (await axios.get("https://jsonplaceholder.typicode.com/comments")).data,
   },
 };
 
